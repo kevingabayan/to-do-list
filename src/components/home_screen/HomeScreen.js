@@ -4,14 +4,29 @@ import { compose } from 'redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import TodoListLinks from './TodoListLinks'
+import { getFirestore } from 'redux-firestore';
+import { withRouter} from 'react-router-dom';
 
 class HomeScreen extends Component {
+    handleNewList = () => {
+        var newbind = this;
+        var date = new Date();
+        const fireStore = getFirestore();
+        fireStore.collection('todoLists').add({
+            name: "Unknown",
+            owner: "Unknown",
+            items: []
+        })
+        .then(function(todoList) {
+            newbind.props.history.push("/todoList/" + todoList.id);
+        })
+    }
 
     render() {
+        const todoLists = this.props.todoLists;
         if (!this.props.auth.uid) {
             return <Redirect to="/login" />;
         }
-
         return (
             <div className="dashboard container">
                 <div className="row">
@@ -25,10 +40,10 @@ class HomeScreen extends Component {
                             List Maker
                         </div>
                         
-                        <div className="home_new_list_container">
-                                <button className="home_new_list_button" onClick={this.handleNewList}>
-                                    Create a New To Do List
-                                </button>
+                    <div className="home_new_list_container">
+                        <button className="home_new_list_button" onClick={this.handleNewList}>
+                            Create a New To Do List
+                         </button>
                         </div>
                     </div>
                 </div>
@@ -46,6 +61,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'todoLists' },
+      { collection: 'todoLists'},
     ]),
 )(HomeScreen);

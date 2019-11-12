@@ -17,7 +17,6 @@ class ListScreen extends Component {
         if(target.id == 'name') {
             const fireStore = getFirestore();
             fireStore.collection('todoLists').doc(this.props.todoList.id).update({name: target.value});
-            console.log("Name updated");
         }
         else {
             const fireStore = getFirestore();
