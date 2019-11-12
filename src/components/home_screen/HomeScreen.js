@@ -15,7 +15,8 @@ class HomeScreen extends Component {
         fireStore.collection('todoLists').add({
             name: "Unknown",
             owner: "Unknown",
-            items: []
+            items: [],
+            timestamp: date.getTime()
         })
         .then(function(todoList) {
             newbind.props.history.push("/todoList/" + todoList.id);
@@ -61,6 +62,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'todoLists'},
+      { collection: 'todoLists', orderBy: 'timestamp'},
     ]),
 )(HomeScreen);

@@ -26,6 +26,7 @@ class DatabaseTester extends React.Component {
                     name: todoListJson.name,
                     owner: todoListJson.owner,
                     items: todoListJson.items,
+                    timestamp: date.getTime()
                 }).then(() => {
                     console.log("DATABASE RESET");
                 }).catch((err) => {
