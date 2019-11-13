@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
+import { withRouter} from 'react-router-dom';
 
 class ListScreen extends Component {
     state = {
@@ -46,7 +47,7 @@ class ListScreen extends Component {
                     <label className = "active" htmlFor="password">Owner</label>
                     <input className="active" type="text" name="owner" id="owner" onChange={this.handleChange} value={this.state.owner} />
                 </div>
-                <ItemsList todoList={todoList} />
+                <ItemsList todoList={todoList}/>
             </div>
         );
     }
@@ -65,6 +66,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default compose(
+  withRouter,
   connect(mapStateToProps),
   firestoreConnect([
     { collection: 'todoLists' },

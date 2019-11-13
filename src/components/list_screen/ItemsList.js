@@ -3,8 +3,17 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
+import { Link } from 'react-router-dom';
+import { getFirestore } from 'redux-firestore';
+import { firestore } from 'firebase';
+import { withRouter} from 'react-router-dom';
 
 class ItemsList extends React.Component {
+
+    handleNewItem = () => {
+        this.props.history.push("/todoList/" + this.props.todoList.id + "/" + this.props.todoList.items.length);
+    }
+
     render() {
         const todoList = this.props.todoList;
         const items = todoList.items;
@@ -36,9 +45,8 @@ class ItemsList extends React.Component {
                         <ItemCard todoList={todoList} item={item} />
                     );})
                 }
-                <div className="card light-green z-depth 0">
-                    <h4 className = "center-align">&#43;</h4>
-                    <Link to={'/todoList/' + todoList.id + "/" + todoList.key} onClick = {this.handleTop.bind(this, todoList.id)} key={todoList.id}></Link>
+                <div className="card light-green z-depth 0" onClick={this.handleNewItem}>
+                    <h4 className = "black-text center-align">&#43;</h4>
                 </div>
             </div>
         );
@@ -54,6 +62,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default compose(
+    withRouter,
     connect(mapStateToProps),
     firestoreConnect([
         { collection: 'todoLists' },
