@@ -38,3 +38,32 @@ div.banner {
 .home_new_list_button:hover {
   box-shadow: 1px 2px;
 }
+.plus:hover {
+  cursor: pointer
+}
+.trashcan{
+  font-size: 70px;
+}
+.todoprompt{
+  font-size: 50px;
+}
+.taskbar:hover {
+  cursor: pointer
+}
+.fixed-action-btn {
+  position: absolute;
+}
+
+#child {
+  opacity: 0.0;
+  right: -40px;
+}
+#parent:hover #child {
+  transition: 1s;
+  opacity: 1.0;
+  right: 0px;
+}
+
+.todo-list-link:hover {
+  cursor:pointer
+}
