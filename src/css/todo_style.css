@@ -67,3 +67,18 @@ div.banner {
 .todo-list-link:hover {
   cursor:pointer
 }
+
+.modal {
+  top: 100px;
+}
+
+.modal.open {
+  visibility: visible;
+  opacity: 1;
+  animation: mymove 1s;
+}
+
+@keyframes mymove {
+	from {left: -10000px; top: 94px;}
+	to {left: 0px; top: 94px;}
+}
