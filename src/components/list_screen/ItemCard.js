@@ -62,7 +62,7 @@ class ItemCard extends React.Component {
         const {todoList} = this.props;
         if(!item.completed) {
             return (
-            <div className="card z-depth-1 todo-list-link pink-lighten-3" onClick = {this.handleItemScreen}>
+            <div className="card z-depth-1 todo-list-link" onClick = {this.handleItemScreen}>
             <div className = "row">
                 <div class = "col s3">
                     <div className="card-content grey-text text-darken-3">
@@ -101,7 +101,7 @@ class ItemCard extends React.Component {
         }
         else {
         return (
-            <div className="card z-depth-1 todo-list-link pink-lighten-3"  onClick = {this.handleItemScreen} >
+            <div className="card z-depth-1 todo-list-link"  onClick = {this.handleItemScreen} >
                 <div className = "row">
                     <div class = "col s3">
                         <div className="card-content grey-text text-darken-3" >
